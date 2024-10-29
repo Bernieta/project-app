@@ -1,20 +1,37 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+
+<ion-content [fullscreen]="true" class="app-content ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Inicio</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <article id="power">
+      <strong>Hola, {{ displayName }}</strong>
+  </article>
+
+  <article id="power">
+    <ion-label>{{ textPower }}</ion-label>
+    <ion-toggle slot="end" color="secondary" [value]="[0,1]" [checked]="powerValue === 1" (ionChange)="power($event)"></ion-toggle>
+  </article>
+
+  <article id="measurement">
+    <strong>Humedad del Ambiente</strong>
+    <p>{{ humidity }}</p>
+  </article>
+
+  <article id="measurement">
+    <strong>Capacidad del Tanque</strong>
+    <p>{{ tank }}</p>
+  </article>
+
 </ion-content>

@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Historial</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" class="app-content ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Inicio</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <article id="filter">
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime color="secondary" id="datetime" presentation="date" [showDefaultButtons]="true" doneText="Hecho"
+          cancelText="Cancelar" (ionChange)="captureDateValue($event)">
+          <span slot="title">Seleccionar Fecha</span>
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+    <ion-button color="secondary" (click)="getRecords()">Filtrar</ion-button>
+  </article>
+
+  <article id="water">
+    <strong>Cantidad de agua filtrada</strong>
+    <p>{{ water }}</p>
+  </article>
+
+  <article id="records">
+    <strong>Historial</strong>
+    @for (record of records; track $index) {
+      <div>
+        <ion-label>{{ $index + 1 }}</ion-label>
+        <p>{{ record.date | date: 'medium' }}</p>
+      </div>
+    }
+  </article>
+
+
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="logo-login">
+      <figure><img src="../../assets/img/login.png" alt="login-img"></figure>
+    </div>
+    <form [formGroup]="formLogin" (ngSubmit)="login()" class="form">
+      <ion-input type="email" label="Email" label-placement="floating" fill="outline" placeholder="example@mail.com"
+        required formControlName="email"></ion-input>
+
+      <ion-input type="password" label="Password" label-placement="floating" fill="outline" placeholder="********"
+        required formControlName="password"></ion-input>
+
+      <span>¿Olvidaste tu contraseña? <a routerLink="/forgot-password">Ingresa aquí</a></span>
+
+      @if (inavlidInput) {
+      <p>{{ errorMessage }}</p>
+      }
+      <ion-button type="submit" color="secondary" type="submit" shape="round" expand="block">
+        @if (spinner) {
+          <ion-spinner slot="start"></ion-spinner>
+        }
+        @if (!spinner) {
+          <span>Login</span>
+        } 
+      </ion-button>
+      <span>¿No tienes cuenta? <a routerLink="/register">Registrarse</a></span>
+    </form>
+  </div>
+</ion-content>

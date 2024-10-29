@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 10px;
+}
+.container .logo-login figure {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.title h4 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: #3b71ca;
+}
+
+p {
+    color: #c31616;
+    text-align: center;
+}
+
+span {
+    padding: 5px;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+a {
+    text-decoration: none;
+}

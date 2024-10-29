@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="title">
+      <h4>Registrarse</h4>
+    </div>
+    <form [formGroup]="formRegister" (ngSubmit)="createUser()" class="form">
+      <ion-input type="text" label="Nombres" label-placement="floating" fill="outline" placeholder="Nombres" formControlName="names"></ion-input>
+      
+      <ion-input type="email" label="Email" label-placement="floating" fill="outline" placeholder="example@mail.com" formControlName="email"></ion-input>
+
+      <ion-input type="password" label="Password" label-placement="floating" fill="outline" placeholder="******" formControlName="password"></ion-input>
+
+      @if (isValidInput) {
+        <p>{{ errorMessage }}</p>
+      }
+
+      <ion-button type="submit" color="secondary" shape="round" expand="block">
+        @if (spinner) {
+          <ion-spinner></ion-spinner>
+        }
+        @if (!spinner) {
+          <span>Guardar</span>
+        }
+      </ion-button>
+      <span>¿Ya tienes cuenta? <a routerLink="/">Iniciar sesión</a></span>
+    </form>
+  </div>
+</ion-content>
