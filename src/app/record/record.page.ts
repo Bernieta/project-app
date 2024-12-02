@@ -48,9 +48,11 @@ import { IRecord } from '../interfaces/irecord';
   ],
 })
 export class RecordPage implements OnInit {
-  water!: string;
+  water!: number;
   records: IRecord[] = [];
   inputDateValue!: string;
+  totalLiters!: number;
+  totalLitersToDay!: number;
 
   constructor() {
     addIcons({ homeOutline, timeOutline });
@@ -69,7 +71,7 @@ export class RecordPage implements OnInit {
     const query = ref(database, 'agua');
     onValue(query, (snap) => {
       if (!snap.exists()) return;
-      this.water = `${snap.val()} Litros`;
+      this.water = snap.val();
     });
   }
 
@@ -78,15 +80,22 @@ export class RecordPage implements OnInit {
     onValue(query, (snap) => {
       if (!snap.exists()) return;
       const values = Object.values(snap.val() as IRecord[]).reverse();
+      this.totalLiters = values.reduce(
+        (total, record) => total + record.litros,
+        0
+      );
+      this.totalLiters = Math.floor(this.totalLiters * 100) / 100;
       const currentDate = new Date();
       if (!this.inputDateValue) {
         this.records = this.filter(values, currentDate);
       } else {
-        this.records = this.filter(
-          values,
-          new Date(this.inputDateValue)
-        );
+        this.records = this.filter(values, new Date(this.inputDateValue));
       }
+      this.totalLitersToDay = this.records.reduce(
+        (total, record) => total + record.litros,
+        0
+      );
+      this.totalLitersToDay = Math.floor(this.totalLitersToDay * 100) / 100;
     });
   }
 

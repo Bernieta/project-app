@@ -24,6 +24,11 @@
     <ion-toggle slot="end" color="secondary" [value]="[0,1]" [checked]="powerValue === 1" (ionChange)="power($event)"></ion-toggle>
   </article>
 
+  <article id="power">
+    <ion-label>Almacenar</ion-label>
+    <ion-toggle slot="end" color="secondary" [value]="[0,1]" [checked]="filterValue === 1" (ionChange)="filterWater($event)"></ion-toggle>
+  </article>
+
   <article id="measurement">
     <strong>Humedad del Ambiente</strong>
     <p>{{ humidity }}</p>

@@ -48,6 +48,8 @@ export class HomePage implements OnInit {
   humidity!: string;
   tank!: string;
   displayName: string = '';
+  filterValue!: number;
+  textFilterWater!: string;
 
   constructor() {
     addIcons({ homeOutline, timeOutline });
@@ -57,6 +59,7 @@ export class HomePage implements OnInit {
     this.getPower();
     this.getHumidity();
     this.getTank();
+    this.getFilterWater();
     this.showDisplayName();
   }
 
@@ -64,6 +67,13 @@ export class HomePage implements OnInit {
     const value = (event as CustomEvent).detail.value;
     const query = ref(database, 'apagar');
     if (this.powerValue === 1) set(query, value[0]);
+    else set(query, value[1]);
+  }
+
+  public filterWater(event: Event) {
+    const value = (event as CustomEvent).detail.value;
+    const query = ref(database, 'filtro');
+    if (this.filterValue === 1) set(query, value[0]);
     else set(query, value[1]);
   }
 
@@ -89,6 +99,16 @@ export class HomePage implements OnInit {
     onValue(query, (snap) => {
       if (!snap.exists()) return;
       this.tank = `${snap.val()}%`;
+    });
+  }
+
+  public getFilterWater() {
+    const query = ref(database, 'filtro');
+    onValue(query, (snap) => {
+      if (!snap.exists()) return;
+      this.filterValue = snap.val();
+      this.textFilterWater =
+        this.filterValue === 1 ? 'Filtro activado' : 'Filtro desactivado';
     });
   }
 

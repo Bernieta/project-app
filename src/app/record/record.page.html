@@ -15,6 +15,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <article id="water">
+    <strong>Cantidad total de litros</strong>
+    <p>{{ totalLiters }} Litros</p>
+  </article>
+
   <article id="filter">
     <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
@@ -29,9 +34,10 @@
     <ion-button color="secondary" (click)="getRecords()">Filtrar</ion-button>
   </article>
 
+
   <article id="water">
-    <strong>Cantidad de agua filtrada</strong>
-    <p>{{ water }}</p>
+    <strong>Cantidad total de litros del dia</strong>
+    <p>{{ totalLitersToDay }} Litros</p>
   </article>
 
   <article id="records">
@@ -40,6 +46,10 @@
       <div>
         <ion-label>{{ $index + 1 }}</ion-label>
         <p>{{ record.date | date: 'medium' }}</p>
+      </div>
+      <div class="lit">
+        <ion-label>Cantidad de litros:</ion-label>
+        <p>{{ record.litros }}</p>
       </div>
     }
   </article>
